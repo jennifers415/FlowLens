@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>FlowLens Demo</title></head>
+  <body style="font-family: system-ui; padding: 24px;">
+    <h1>Demo Page</h1>
+    <button>Click me</button>
+    <p>Hover and scroll around to generate data.</p>
+
+    <script src="/flowlens-sdk.umd.js"></script>
+    <script>
+      FlowLensSDK.init({
+        siteId: 'demo',
+        serverUrl: 'http://localhost:5055'
+      });
+    </script>
+  </body>
+</html>

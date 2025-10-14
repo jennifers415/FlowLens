@@ -1,0 +1,19 @@
+{
+    "name": "flowlens",
+    "private": true,
+    "version": "0.1.0",
+    "packageManager": "pnpm@9.7.0",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "dev:server": "pnpm -C packages/server dev",
+        "dev:dashboard": "pnpm -C packages/dashboard dev",
+        "build:sdk": "pnpm -C packages/sdk build",
+        "build:dashboard": "pnpm -C packages/dashboard build",
+        "start": "concurrently \"pnpm dev:server\" \"pnpm dev:dashboard\""
+    },
+    "devDependencies": {
+        "concurrently": "^9.0.0"
+    }
+}
