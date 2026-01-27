@@ -1,8 +1,26 @@
 node_modules
 .DS_Store
+.vscode
+
+# Env files
 .env
-*.db
+.env.*
+!.env.example
+
+# Logs
 *.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Build outputs
 dist
 build
-.vscode
+.turbo
+coverage
+*.tsbuildinfo
+
+# SQLite artifacts
+*.db
+*.db-shm
+*.db-wal
+packages/server/data/*.db*

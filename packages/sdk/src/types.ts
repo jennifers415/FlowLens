@@ -17,4 +17,5 @@ export interface SDKOptions {
     serverUrl: string; // e.g., http://localhost:5055
     batchIntervalMs?: number; // default 2000
     maxBatchSize?: number; // default 100
+    maxBufferSize?: number; // default 5000
 }

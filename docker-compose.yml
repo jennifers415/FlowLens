@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      context: ./packages/server
+    ports:
+      - "5055:5055"
+    environment:
+      PORT: 5055
+      DATABASE_PATH: /app/data/flowlens.db
+      CORS_ORIGIN: http://localhost:5173
+    volumes:
+      - ./packages/server/data:/app/data
+
+  dashboard:
+    build:
+      context: ./packages/dashboard
+      args:
+        VITE_SERVER_URL: http://localhost:5055
+    ports:
+      - "5173:4173"
+    depends_on:
+      - server

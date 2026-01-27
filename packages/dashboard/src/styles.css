@@ -3,3 +3,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --page-bg: #f8fafc;
+    --page-ink: #0f172a;
+  }
+
+  body {
+    background: var(--page-bg);
+    color: var(--page-ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+}

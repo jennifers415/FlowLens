@@ -39,3 +39,13 @@ export const statsByTag = db.prepare(
    GROUP BY tag
    ORDER BY count DESC`
 );
+
+export const statsByTagBucket = db.prepare(
+    `SELECT tag,
+            CAST(ts / ? AS INTEGER) * ? as bucket,
+            COUNT(*) as count
+     FROM events
+     WHERE site_id = ? AND ts BETWEEN ? AND ?
+     GROUP BY tag, bucket
+     ORDER BY bucket ASC`
+);

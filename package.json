@@ -11,9 +11,13 @@
         "dev:dashboard": "pnpm -C packages/dashboard dev",
         "build:sdk": "pnpm -C packages/sdk build",
         "build:dashboard": "pnpm -C packages/dashboard build",
-        "start": "concurrently \"pnpm dev:server\" \"pnpm dev:dashboard\""
+        "start": "concurrently \"pnpm dev:server\" \"pnpm dev:dashboard\"",
+        "dev": "pnpm start",
+        "test": "vitest run",
+        "test:watch": "vitest"
     },
     "devDependencies": {
-        "concurrently": "^9.0.0"
+        "concurrently": "^9.0.0",
+        "vitest": "^2.1.4"
     }
 }

@@ -1,97 +1,276 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>FlowLens Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowLens Demo 2</title>
     <style>
+      :root {
+        --bg: #f8fafc;
+        --ink: #0f172a;
+        --muted: #475569;
+        --card: #ffffff;
+        --line: #e2e8f0;
+        --soft: #f1f5f9;
+        --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
       body {
-        font-family: system-ui, sans-serif;
         margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+        line-height: 1.45;
       }
 
-      nav a {
-        color: white;
-        margin-left: 16px;
-        text-decoration: none;
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+        display: grid;
+        gap: 20px;
       }
 
-      main {
-        padding: 24px;
-      }
-
-      .top-buttons {
-        display: flex;
+      header {
+        display: grid;
         gap: 10px;
-        margin-bottom: 20px;
+        padding: 20px 24px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--card);
+        box-shadow: var(--shadow);
       }
 
-      .sidebar {
-        position: fixed;
-        right: 20px;
-        top: 100px;
-        background: #616667;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 5vw, 52px);
+        letter-spacing: -0.01em;
+      }
+      p.lead { margin: 0; color: var(--muted); max-width: 72ch; }
+
+      .sub {
+        color: var(--muted);
+        max-width: 70ch;
       }
 
-      .scroll-box {
-        height: 200px;
-        width: 95%;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 12px;
-        margin: 20px auto;
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
       }
 
-      footer {
-        background: #616667;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
+      .badge {
+        font-size: 13px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: #f1f5f9;
+        color: var(--ink);
       }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .span-8 { grid-column: span 8; }
+      .span-4 { grid-column: span 4; }
+      .span-6 { grid-column: span 6; }
+      .span-12 { grid-column: span 12; }
+      @media (max-width: 900px) {
+        .span-8, .span-4, .span-6 { grid-column: span 12; }
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 12px;
+      }
+
+      .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+      button {
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        background: var(--ink);
+        color: white;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+        box-shadow: 0 8px 18px rgba(31, 41, 55, 0.25);
+      }
+      button:hover { transform: translateY(-1px); }
+      button:active { transform: translateY(0); }
+      button.ghost {
+        background: white;
+        color: var(--ink);
+        border-color: var(--line);
+        box-shadow: none;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        font: inherit;
+      }
+      textarea { min-height: 96px; resize: vertical; }
+
+      .table {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card);
+      }
+      .tr {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr;
+        padding: 11px 13px;
+        border-top: 1px solid var(--line);
+        background: var(--card);
+      }
+      .tr:first-child { border-top: 0; background: var(--soft); font-weight: 600; }
+
+      .bars { display: grid; gap: 6px; }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        background: #94a3b8;
+      }
+
+      .spacer {
+        height: 420px;
+        border-radius: 18px;
+        border: 1px dashed var(--line);
+        background: repeating-linear-gradient(
+          -45deg,
+          rgba(226, 232, 240, 0.9),
+          rgba(226, 232, 240, 0.9) 12px,
+          rgba(248, 250, 252, 0.95) 12px,
+          rgba(248, 250, 252, 0.95) 24px
+        );
+      }
+
+      footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 4px; }
     </style>
   </head>
   <body>
+    <main class="page">
+      <header>
+        <h1>FlowLens Interactive Demo</h1>
+        <div class="sub">
+          Click around, type, scroll, and then check the dashboard.
+        </div>
+        <div class="badge-row">
+          <span class="badge">SDK: /flowlens-sdk.umd.js</span>
+          <span class="badge">Site: demo2</span>
+          <span class="badge">API: http://localhost:5055</span>
+        </div>
+      </header>
 
-    <main>
-      <h1>Demo Page (v2) </h1>
-      <p>Hover, scroll, click, and type to generate data.</p>
+      <section class="grid">
+        <article class="card span-8">
+          <h2 style="margin: 0;">Plan Builder</h2>
+          <div class="row">
+            <button>Starter</button>
+            <button class="ghost">Growth</button>
+            <button class="ghost">Enterprise</button>
+          </div>
+          <div class="row">
+            <label style="flex: 1 1 220px;">
+              Team name
+              <input placeholder="Acme Product" />
+            </label>
+            <label style="flex: 1 1 180px;">
+              Seats
+              <select>
+                <option>1-5</option>
+                <option>6-20</option>
+                <option>21-100</option>
+                <option>100+</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Goals
+            <textarea placeholder="e.g., find where users hesitate before checkout"></textarea>
+          </label>
+          <div class="row">
+            <button>Save Plan</button>
+            <button class="ghost">Reset</button>
+          </div>
+        </article>
 
-      <div class="top-buttons">
-        <button>Top Left Button</button>
-        <button>Top Middle Button</button>
-        <button>Top Right Button</button>
-      </div>
+        <aside class="card span-4">
+          <h2 style="margin: 0;">Quick Actions</h2>
+          <div class="row">
+            <button>Invite</button>
+            <button class="ghost">Export</button>
+          </div>
+          <div class="bars">
+            <div class="bar"><span style="width: 78%;"></span></div>
+            <div class="bar"><span style="width: 52%;"></span></div>
+            <div class="bar"><span style="width: 34%;"></span></div>
+            <div class="bar"><span style="width: 86%;"></span></div>
+          </div>
+        </aside>
 
-      <img src="https://picsum.photos/600/200" alt="Random image" style="width:100%; border-radius: 8px;">
+        <article class="card span-12">
+          <h2 style="margin: 0;">Recent Components</h2>
+          <div class="table" role="table" aria-label="Recent components">
+            <div class="tr" role="row">
+              <div>Component</div><div>Clicks</div><div>Hovers</div><div>CTR</div>
+            </div>
+            <div class="tr" role="row">
+              <div>Hero / Start Trial</div><div>482</div><div>1,203</div><div>40%</div>
+            </div>
+            <div class="tr" role="row">
+              <div>Nav / Pricing</div><div>311</div><div>822</div><div>38%</div>
+            </div>
+            <div class="tr" role="row">
+              <div>FAQ / Expand</div><div>204</div><div>640</div><div>32%</div>
+            </div>
+            <div class="tr" role="row">
+              <div>Footer / Contact</div><div>119</div><div>398</div><div>30%</div>
+            </div>
+          </div>
+        </article>
 
-      <div class="scroll-box">
-        <p>Scrollable content starts here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod justo nec elit feugiat, nec convallis lectus pulvinar.</p>
-        <p>Vivamus faucibus, nibh nec suscipit blandit, urna tortor dignissim nulla, eu ultricies quam metus a sapien.</p>
-        <p>Aliquam erat volutpat. Sed mollis urna eu eros varius, id ullamcorper elit viverra.</p>
-        <p>Donec in lacus at diam fermentum consequat. Integer consequat dui nec erat fringilla, vitae volutpat nisl pulvinar.</p>
-        <p>Morbi sagittis ligula a urna facilisis, at luctus eros iaculis.</p>
-        <p>End of scroll box.</p>
-      </div>
+        <article class="card span-12">
+          <h2 style="margin: 0;">Scroll Area</h2>
+          <p class="lead" style="margin: 0;">
+            Scroll up and down here a few times to generate scroll and hover events.
+          </p>
+          <div class="spacer"></div>
+        </article>
+      </section>
 
-
+      <footer>
+        Demo 2 uses the same SDK bundle at /flowlens-sdk.umd.js.
+      </footer>
     </main>
-
-    <div class="sidebar">
-      <button>Sidebar Button</button>
-    </div>
-
-    <footer>
-      <button>Footer Button</button>
-    </footer>
 
     <script src="/flowlens-sdk.umd.js"></script>
     <script>
       FlowLensSDK.init({
-        siteId: 'demo2',
-        serverUrl: 'http://localhost:5055'
+        siteId: "demo2",
+        serverUrl: "http://localhost:5055"
       });
     </script>
   </body>
