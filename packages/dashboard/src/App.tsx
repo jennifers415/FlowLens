@@ -62,8 +62,8 @@ export default function App() {
                 </div>
                 )}
                 <div className="flex flex-wrap gap-2 text-sm">
-                    <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo.html">Open Demo 1</a>
-                    <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo2.html">Open Demo 2</a>
+                    <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo.html" target="_blank" rel="noopener noreferrer">Open Demo 1</a>
+                    <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo2.html" target="_blank" rel="noopener noreferrer">Open Demo 2</a>
                 </div>
             </header>
 
