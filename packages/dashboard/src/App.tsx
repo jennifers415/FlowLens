@@ -5,6 +5,8 @@ import Controls from './components/Controls';
 import StatCards from './components/StatCards';
 import TagSeries from './components/TagSeries';
 
+const IS_DEMO_MODE = !import.meta.env.VITE_SERVER_URL;
+
 export default function App() {
     const [siteId, setSiteId] = useState('demo');
     const [path, setPath] = useState('');
@@ -40,6 +42,7 @@ export default function App() {
     useEffect(() => { refresh(); }, [refresh]);
 
     useEffect(() => {
+        if (IS_DEMO_MODE) return;
         const id = setInterval(() => setTo(Date.now()), 5000);
         return () => clearInterval(id);
     }, []);
@@ -52,6 +55,12 @@ export default function App() {
                     Filter by site and time window, interact with the demo pages, then refresh to see heatmaps and
                     component activity update.
                 </p>
+
+                {IS_DEMO_MODE && (
+                <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm text-amber-800">
+                    Demo mode: dashboard is using seeded sample data.
+                </div>
+                )}
                 <div className="flex flex-wrap gap-2 text-sm">
                     <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo.html">Open Demo 1</a>
                     <a className="px-3 py-1.5 rounded-full border bg-white hover:bg-slate-50" href="/demo2.html">Open Demo 2</a>
